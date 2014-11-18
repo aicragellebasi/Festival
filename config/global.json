@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Festival": {
+            "applicationId": "jgXQVs1thvNhpHahKqsUFJoySExvSKPhL4UAd8kG", 
+            "masterKey": "VMFTA9EMLhS3bXw4VFwIFRDSFfUaHuPOwceOn1nT"
+        }, 
+        "_default": {
+            "link": "Festival"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.1"
+    }
+}

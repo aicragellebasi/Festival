@@ -1,0 +1,20 @@
+legend{
+	font-weight: bold;
+}
+input[type="text"], input[type="email"]{
+	width: 100%;
+	margin-bottom: 1rem;
+}
+textarea{
+	width: 100%;
+}
+
+/* ************** From iPad portrait up.. For now. Will do the desktop media screen asap*/
+@media screen and (min-width: 768px) {
+	input[type="text"], input[type="email"]{
+		max-width: 30%;
+	}
+	textarea{
+		max-width: 50%;
+	}
+}

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<% include metas %>
+<title>Primavera de los Realizadores</title> 
+</head>
+
+<body id="homePage">
+
+<% include nav %>
+
+<div class="container">
+	<header>
+		<div id="logoImg">
+            <a href="index.html">
+                <img src="img/logo.png">
+            </a>
+        </div>
+        <div id="logoTxt">
+                <h1><a href="index.html">Primavera de los<br>Realizadores</a></h1>
+                <h4>New York City</h4>
+        </div>
+	</header>
+
+	<section id="featured">
+		<h2><%= festival.get('desc') %></h2>
+		<div id="leadImg">
+			<img src="img/mainImg-01.png">
+		</div>
+	</section>
+	<section id="main">
+		<article id="movies">
+			<div class="flor">
+				<img src="img/featmovie.jpg">
+			</div>
+			<div class="excerpt">
+				<h3><a href="/schedule/<%= festival.id %>">Movies</a></h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<div class="details">
+					<h4><a href="">Title movie</a></h4>
+					<p><a href="">Author</a></p>
+					<p>6PM</p>
+				</div>
+				<a href="/schedule/<%= festival.id %>"><button>Check all scheduled movies...</button></a>
+			</div>
+		</article>
+		<article id="workshops">
+			<div class="flor">
+				<img src="img/featdebate.jpg">
+			</div>
+			<div class="excerpt">
+				<h3><a href="/schedule/<%= festival.id %>">Worskshops</a></h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<div class="details">
+					<h4><a href="">Title Workshop</a></h4>
+					<p><a href="">Instructor</a></p>
+					<p>4PM</p>
+				</div>
+				<a href="/schedule/<%= festival.id %>"><button>Check all scheduled workshops...</button></a>
+			</div>
+		</article>
+		<article id="debates">
+			<div class="flor">
+				<img src="img/featworkshop.jpg">
+			</div>
+			<div class="excerpt">
+				<h3><a href="/schedule/<%= festival.id %>">Debates</a></h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<div class="details">
+					<h4><a href="">Title Debate</a></h4>
+					<p><a href="">Speaker</a></p>
+					<p>8PM</p>
+				</div>
+				<a href="/schedule/<%= festival.id %>"><button>Check all scheduled debates...</button></a>
+			</div>
+		</article>
+		<article id="participate">
+			<div class="flor">
+				<img src="img/featparticipa.jpg">
+			</div>
+			<div class="excerpt">
+				<h3><a href="">Participate!</a></h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<a href=""><button>Participate now!</button></a>
+			</div>
+		</article>
+	</section>
+	<footer><% include footer %></footer>
+</div>
+</body>
+</html>

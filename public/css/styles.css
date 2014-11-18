@@ -1,0 +1,446 @@
+@import url(http://fonts.googleapis.com/css?family=Lora|PT+Sans);
+/*@import url('homepage.css');*/
+
+/* Default will be iPhone since we are coding mobile first*/
+html, body{
+	font-size: 16px;
+	font-family: 'PT Sans', sans-serif;
+	/**/background-color: '#faffe4';
+	box-sizing: border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing: border-box;
+	margin: 0;
+}
+*, *:before, *:after { 
+	box-sizing: inherit; 
+	-moz-box-sizing: inherit;
+	-webkit-box-sizing: inherit;
+}
+
+/* ************** Setting up font sizes at module level. cf: http://css-tricks.com/rems-ems/; */
+nav{font-size: 1rem;}
+header{font-size: 0.6rem;}
+section{font-size: 1rem;}
+section#featured{font-size: 0.6rem;}
+footer{font-size: 0.8rem;}
+
+/* ************** Commun elements Styles */
+a:link, a:visited, a:hover, a:active{
+	color: #2887e6;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
+h1, h2, h3, h4, h5{
+	font-family: 'Lora', serif;
+	color: #1ba51c;
+}
+h1 a:link, h1 a:visited, h1 a:hover, h1 a:active,
+h2 a:link, h2 a:visited, h2 a:hover, h2 a:active,
+h3 a:link, h3 a:visited, h3 a:hover, h3 a:active,
+h4 a:link, h4 a:visited, h4 a:hover, h4 a:active,
+h5 a:link, h5 a:visited, h5 a:hover, h5 a:active, 
+nav a:link, nav a:visited, nav a:hover, nav a:active{
+	text-decoration: none;
+	color: #1ba51c;
+}
+h1 a:link, h1 a:visited, h1 a:hover, h1 a:active{
+	color: black;
+}
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover{
+	text-decoration: underline;
+}
+img{
+	width: 100%;
+}
+
+/* ************** Commun custom Styles */
+.container{
+	margin-top: 2em;
+}
+.circle{
+	border-radius: 50%;
+}
+
+/* ************** Absolute to navbar */
+nav#topNav{
+	position: absolute;
+	top: 0.5em;
+	right: 0;
+}
+nav#topNav a:link,nav#topNav a:visited,nav#topNav a:hover,nav#topNav a:active{
+	color: black;
+}
+nav#topNav a#menu{
+	float: left;
+}
+#menu span{
+	margin:0.2em;
+	padding: 0.3em 0.5em;
+	border-radius: 50%;
+	display: inline-block;
+	background-color: #ff2e00;
+	color: white;
+}
+#menu:hover{
+	cursor: pointer;
+}
+	/* ************** toggle nav */
+	ul#toggleNav{
+		display: none;
+		top: 50px;
+		position: relative;
+		list-style-type: none;
+		padding-left: 0;
+		border-top: 3px dotted #ff2e00;
+	}
+	ul#toggleNav li{
+		/**/text-align: center;
+		padding: 0.5em 0;
+		border-bottom: 3px dotted #ff2e00;
+		text-transform: uppercase;
+	}
+	ul#toggleNav li a{
+		/*text-align: right;
+		float: right;*/
+		text-decoration: none;
+	}
+	ul#toggleNav li a:link,
+	ul#toggleNav li a:visited,
+	ul#toggleNav li a:hover,
+	ul#toggleNav li a:active{
+		/*text-align: right;
+		float: right;*/
+	}
+	ul#toggleNav li:hover{
+		background-color: #EEE;
+		cursor: pointer;
+	}
+
+
+
+/* ************** Header */
+header{
+	width: 100%;
+	float: left;
+	margin-top: 3em;
+}
+#logoImg{
+	/**/width: 30%;
+	float: left;
+	padding-right: 1em;
+	padding-left: 1em;
+
+}
+#logoImg{
+	max-width: 250px;
+	min-width: 90px;
+}
+#logoTxt{
+	/**/width: 70%;
+	float: left;
+}
+
+/* ************** Sections: Main content and featured; */
+section{
+	clear: both;
+	width: 100%;
+	padding: 1em;
+}
+section#featured{
+	background-color: #f9e72f;
+	text-align: center;
+	float: left;
+	padding: 0 10px;
+	box-shadow: 0px 5px 2px #ddd;
+}
+section#featured p{
+	clear: left;
+	margin-bottom: 1.5em;
+}
+#leadImg{
+	display: none;
+	position: relative;
+}
+#leadImg img{
+	float: right;
+	position: absolute;
+	right: 0;
+}
+#homePage #leadImg img{
+	top: -9em;
+}
+#schedule #leadImg img, #reserve #leadImg img, #contactPage #leadImg img{
+	top: -15em;
+}
+article, table{
+	padding: 1em 0;
+}
+table{
+	/**/width: 100%;
+}
+article .flor{
+	float: left;
+	width: 150px;
+	/*height: 150px;*/
+	margin: 0 1em 0 0;
+}
+table .flor{ 
+	display: none;
+	width: 100%;
+}
+table td{
+	/*width: 28%;*/
+	border-left: 1px dotted #ff2e00;
+	/*border: 1px solid red;
+	width: 100%;*/
+
+}
+table td:first-child{ /* That is weird but this is the only solution I came up with to fix the size of the flor image in the table of schedule */
+	/*border: 1px solid green;
+	width: 90%;*/
+	border-left: none;
+}
+table th{
+	border-left: none;
+	text-align: left;
+	display: none;
+}
+table td{
+	/**/width: 100%;
+	display: block;
+}
+article .circle{
+	float: left;
+	width: 150px;
+	height: 150px;
+	margin: 0 1em 1em 0;
+	box-shadow: 0px 5px 2px #bbb;
+}
+#movies .circle, 
+#movies button, .moviesRow a.button{
+	background-color: #2887e6;
+}
+#workshops .circle, 
+#workshops button, .workshopsRow a.button{
+	background-color: #ff2e00;
+}
+#debates .circle, 
+#debates button, .debatesRow a.button{
+	background-color: #1ba51c;
+}
+#participate .circle, 
+#participate button, 
+#reserve button, 
+#contactPage button{
+	background-color: #f9e72f;
+}
+.circle h4{
+	width: 100%;
+	text-align: center;
+}
+.circle h4 a{
+	color: black;
+}
+.excerpt .details,
+table .details{
+	margin-top: 1em;
+	font-size: 0.8em;
+}
+.excerpt .details h4,
+.excerpt .details p,
+table .details h4,
+table .details p{
+	margin: 0;
+}
+p.intro{ display: none; }
+table small{ display: block; }
+button, a.button{
+	border: none;
+	border-radius: 5px;
+	padding: 0.5em 1em;
+	margin-top: 1em;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	box-shadow: 0px 5px 2px #ddd;
+}
+button a:link,button a:visited,button a:hover,button a:active,
+a.button:link, a.button:visited, a.button:hover, a.button:active{
+	color: white;
+	text-decoration: none;
+}
+a.button{
+	display: inline-block;
+}
+
+/* ************** Footer */
+footer{
+	clear: both;
+	padding: 1em;
+	border-top: 3px dotted #ff2e00;
+	float: left;
+	width: 100%;
+}
+#sponsors a{
+		display: inline-block;
+		/*border: 1px solid red;*/
+		max-width:100px;
+	}
+#socials i{
+	color: #ff2e00;
+	margin-right: 0.9em;
+}
+#socials i:hover{
+	color: #1ba51c;
+}
+
+footer nav ul{
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+/* ************** From iPad portrait up.. For now. Will do the desktop media screen asap*/
+@media screen and (min-width: 768px) {
+	html, body{
+		font-size: 18px;
+	}
+
+	/* ************** Setting up font sizes at module level. cf: http://css-tricks.com/rems-ems/; */
+	header{font-size: 1.2rem;}
+	section#featured{font-size: 1rem;}
+
+	.container{
+		margin-top: 0;
+	}
+	
+	/* ************** nav */
+	nav#topNav{
+		display: none;
+	}
+	/* ************** toggle nav */
+	ul#toggleNav{
+		display: block;
+		top: 0px;
+		border-top: none;
+		text-align: center;
+	}
+	ul#toggleNav li{
+		/**/text-align: center;
+		padding: 0.1em 0.5em 0.2em 0.5em;
+		border-bottom: none;
+		display: inline;
+		border-right: 3px dotted #ff2e00;
+	}
+	ul#toggleNav li:last-of-type{
+		border-right: none;
+	}
+	ul#toggleNav li a{
+		/*text-align: right;
+		float: right;*/
+		text-decoration: none;
+	}
+	ul#toggleNav li a:link,
+	ul#toggleNav li a:visited,
+	ul#toggleNav li a:hover,
+	ul#toggleNav li a:active{
+		/*text-align: right;
+		float: right;*/
+	}
+	ul#toggleNav li:hover{
+		background-color: #EEE;
+		cursor: pointer;
+	}
+
+	/* ************** Header */
+	header{
+		margin-top: 0;
+	}
+
+	#logoImg{
+	/**/width: 25%;
+	float: left;
+
+	}
+	#logoTxt{
+		/**/width: 45%;
+		float: left;
+	}
+
+	/* ************** Sections main content */
+	section#featured{
+		text-align: left;
+	}
+	#featured h2{
+		display: inline-block;
+		float: left;
+		width: 70%;
+	}
+	#leadImg{
+		width: 30%;
+		display: inline-block;
+		float: right;
+	}
+	#featured img{
+		max-width: 300px;
+		
+	}
+	#homePage article{
+		float: left;
+		width: 50%;
+	}
+	article .excerpt{
+		float: left;
+		width: 60%;
+	}
+
+	table td{
+		/**/width: 28%;
+
+	}
+	table td:first-child{ /* That is weird but this is the only solution I came up with to fix the size of the flor image in the table of schedule */
+		/*border: 1px solid green;*/
+		width: 90%;
+	}
+	table th{
+		display: table-cell;
+	}
+	table td{
+		display: table-cell;
+	}
+
+
+	table .flor{ 
+		display: block;
+	}
+	table{
+		border-spacing: 20px;
+	    border-collapse: separate;
+	}
+	table small{ display: inline; }
+	p.intro{ display: block; }
+
+	/* ************** Footer */
+	footer nav, footer #sponsors, footer #socials{
+		float: left;
+	}
+	#sponsors a{
+		display: inline-block;
+		/*border: 1px solid red;*/
+		max-width:150px;
+	}
+	footer #sponsors{
+		width: 50%;
+	}
+	footer #socials{
+		width: 35%;
+	}
+	footer nav{
+		width: 15%;
+	}
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<% include metas %>
+<title>Primavera de los Realizadores</title> 
+</head>
+
+<body id="contactPage">
+
+<% include nav %>
+
+<div class="container">
+  <header>
+    <div id="logoImg">
+            <a href="index.html">
+                <img src="img/logo.png">
+            </a>
+        </div>
+        <div id="logoTxt">
+                <h1><a href="index.html">Primavera de los<br>Realizadores</a></h1>
+                <h4>New York City</h4>
+        </div>
+  </header>
+
+  <section id="featured">
+    <h2><%= message %></h2>
+    <div id="leadImg">
+      <img src="img/mainImg-01.png">
+    </div>
+  </section>
+  <section id="main">
+    <form class="pure-form">
+      <fieldset>
+        <legend>Your contact information *</legend>
+        <input type="text" id="fname" name="fname" value="" placeholder="Your first name *" required class="pure-input-rounded">
+        <input type="text" id="lname" name="lname" value="" placeholder="Your last name *" required class="pure-input-rounded">
+        <input type="email" id="email" name="email" value="" placeholder="Email" required class="pure-input-rounded">
+      </fieldset>
+      <fieldset>
+        <legend>Tell us who you are</legend>
+
+        <label for="who" class="pure-checkbox">
+              <input id="who" type="checkbox" value="film-professional">
+              A professional of the film industry
+          </label>
+          <label for="who" class="pure-checkbox">
+              <input id="who" type="checkbox" value="student">
+              A student
+          </label>
+          <label for="who" class="pure-checkbox">
+              <input id="who" type="checkbox" value="spanish">
+              A Spanish speaker
+          </label>
+          <label for="who" class="pure-checkbox">
+              <input id="who" type="checkbox" value="regular-person">
+              Just a regular person intersted in films!
+          </label>
+      </fieldset>
+      <fieldset>
+        <legend>Tell us something about Primavera *</legend>
+        <textarea rows="4" id="message" name="message"></textarea>
+      </fieldset>
+      <button type="submit" name="submitContact" value="Send">Send</button>
+    </form>
+  </section>
+  <footer><% include footer %></footer>
+</div>
+</body>
+</html>
