@@ -50,14 +50,15 @@
 			<form class="pure-form">
 			  <fieldset>
 			  	<legend id="persInfoLegend">Your personnal information *</legend>
+			  	<input type="hidden" id="participantId" name="participantId">
 			    <input type="text" id="fname" name="fname" placeholder="Your First Name" required class="pure-input-rounded">
 			    <input type="text" id="lname"  name="lname" placeholder="Your Last Name" required class="pure-input-rounded">
 			  </fieldset>
 			  <legend>Choose your activity *</legend>
-			  <select>
+			  <select id="selectAct">
 			  	<% if (activities) { %>
 				<% for (var i=0; i<activities.length; i++){ %>
-					<option><%=activities[i].get('title')%></option>
+					<option id="activityId" data-id="<%= activities[i].id %>"><%=activities[i].get('title')%></option>
 				<% } %>
 				<% } %>
 			  </select>
@@ -104,8 +105,9 @@
 		 				if (data.success){
 		 					
 		 					//populate the user data:
-		 					$('#fname').val(data.user.fname);
-	 						$('#lname').val(data.user.lname);
+		 					$('#participantId').val(data.participant.objectId);
+		 					$('#fname').val(data.participant.fname);
+	 						$('#lname').val(data.participant.lname);
 	 						
 	 					// 
 		 				}else{
@@ -127,10 +129,15 @@
  	$('#SubmitRegister').on('click',function(e){
  		e.preventDefault();
 
- 		alert($('#fname').val());
+ 		//alert($('#participantId').val());
 
  		var fname = $('#fname').val();
  		var lname = $('#lname').val();
+ 		var participantId = $('#participantId').val();
+ 		var activity = $('#selectAct option:selected').attr("data-id");
+
+ 		alert(activity);
+
  		if (fname && lname){
  			$.ajax({
 		 			url:'/ajax/processStep2',
@@ -140,12 +147,14 @@
 		 				actId:'<%= actId %>',
 		 				fname:fname,
 		 				lname:lname,
+		 				participantId: participantId,
+		 				activity: activity,
 		 			},
 		 			success: function(data){
 					    // 
 		 				if (data.success){
 		 					
-		 					alert('succes');
+		 					alert('success');
 	 					// 
 		 				}else{
 		 					alert('failure');

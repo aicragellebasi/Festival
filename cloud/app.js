@@ -159,47 +159,33 @@ app.get('/reserve/:id', getCurrentFestival, getFestivalActivities, function(req,
 
 // Process Step 1
 app.post('/ajax/processStep1', function(req, res) {
-    var query = new Parse.Query(Parse.User);
-	query.equalTo("email", req.body.email1);
-	query.find({
-	  success: function(result) {
-	    if (result.length>0){
-	    	// Login in existing user retrieved
-	    	/* TODO NOT WORKING:.... Gives me error password undifined...*/
-	    	Parse.User.logIn(result[0].get('username'), result[0].get('password'), {
-			  success: function(userLogged) {
-			    res.json({success:true, status:'exists', user: result[0]});
-			    console.log('Existing user logged in');
-			  },
-			  error: function(userLogged, error) {
-			    res.json({success:false, status:error.message});
-			    console.log('Existing user NOT logged in '+error.message+' PW: '+result[0].get('password')+' Username: '+result[0].get('username'));
-			  }
-			});
-			res.json({success:true, status:'exists', user: result[0]});
+    var Participant = Parse.Object.extend('Participant');
+    var participant = new Parse.Query(Participant);
+
+	participant.equalTo("email", req.body.email1);
+	participant.find({
+	  success: function(participant) {
+	    if (participant.length>0){
+			res.json({success:true, status:'exists', participant: participant[0]});
 	    	//res.json({success:true, status:'exists', user: result[0], activity: activity});
 	    }else{
-	    	// create new user
-	    	console.log('create new user');
-	    	var newUser = new Parse.User();
-			newUser.set("username", Math.random().toString(36).substr(2, 5));
-			newUser.set("password", Math.random().toString(36).substr(2, 5));
-			newUser.set("role", [4]);
-			newUser.set("email", req.body.email1);
-			newUser.signUp(null, {
-			  success: function(result) {
-			    res.json({success:true, status:'New user created', user: result});
-			    console.log('new user created');
+	    	// save new participant
+	    	console.log('saving new participant...');
+	    	var newParticipant = new Participant();
+	    	newParticipant.set("email", req.body.email1);
+			
+			newParticipant.save(null, {
+			  success: function(participant) {
+			    res.json({success:true, status:'New participant created', participant: participant});
+			    console.log('new participant created');
 			  },
-			  error: function(result, error) {
+			  error: function(participant, error) {
 			    // Show the error message somewhere and let the user try again.
 			    //alert("Error: " + error.code + " " + error.message);
 			    res.json({success:false, status:error.message});
-			    console.log('new user NOT created '+error.message);
+			    console.log('new participant NOT created '+error.message);
 			  }
 			});
-	    	
-	    	
 	    }
 	  },
 	  error: function(error) {
@@ -210,11 +196,88 @@ app.post('/ajax/processStep1', function(req, res) {
 
 // Process Step 2
 app.post('/ajax/processStep2', function(req, res) {
-	//req.body.email1
-	//var currentUser = Parse.User.current();
-	//console.log('current user: '+ req.body.lname); // REMEMBER aqui creo que no me funcionan los console.log because it is ajax
+
+	console.log('updating participant...'+req.body.participantId);
+	console.log('with activity: '+req.body.activity);
+
+	var Activity = Parse.Object.extend('Activity');
+	var query = new Parse.Query(Activity);
+
+	query.get(req.body.activity,{
+		success: function(activity){
+
+			console.log('retrieved activity selected: '+activity.get("title"));
+
+			var Participant = Parse.Object.extend('Participant');
+			var participant = new Participant();
+			participant.set("objectId",req.body.participantId);
+			participant.set("fname", req.body.fname);
+			participant.set("lname", req.body.lname);
+			
+			participant.save(null, {
+			  success: function(participant) {
+			  	//TODO: update activity with particiant
+
+			  	var participant2add = activity.get("ParticipantsID");
+			  	participant.id = req.body.participantId;
+			  	participant2add.push(participant);
+
+			  	var act2update = new Activity();
+			  	act2update.id = activity.id;
+			  	act2update.set("ParticipantsID",participant2add);
+
+			  	act2update.save(null,{
+			  		success: function(activityUpdated){
+			  			res.json({success:true, status:'step3', activity: activityUpdated, participant: participant});
+			    		console.log('participant and activity updated');
+			  		},
+			  		error: function(activityUpdated, error){
+			  			res.json({success:false, status:error.message});
+			    		console.log('activity NOT updated'+error.message);
+			  		}
+			  	});
+
+			    //res.json({success:true, status:'step3'});
+			    //console.log('participant updated');
+			  },
+			  error: function(participant, error) {
+			    // Show the error message somewhere and let the user try again.
+			    //alert("Error: " + error.code + " " + error.message);
+			    res.json({success:false, status:error.message});
+			    console.log('participant NOT updated '+error.message);
+			  }
+			});
+
+			
+			
+		},
+		error: function(activity, error){
+			res.json({success:false, status:error.message});
+			console.log('no activity retrieved');
+		}
+	})
+
+/*
+	var Participant = Parse.Object.extend('Participant');
+	var participant = new Participant();
+	participant.set("objectId",req.body.participantId);
+	participant.set("fname", req.body.fname);
+	participant.set("lname", req.body.lname);
 	
-	res.json({success:true, status:'step2'});
+	participant.save(null, {
+	  success: function(participant) {
+	    res.json({success:true, status:'participant updated', participant: participant});
+	    console.log('participant updated');
+	  },
+	  error: function(participant, error) {
+	    // Show the error message somewhere and let the user try again.
+	    //alert("Error: " + error.code + " " + error.message);
+	    res.json({success:false, status:error.message});
+	    console.log('participant NOT updated '+error.message);
+	  }
+	});
+*/
+	//res.json({success:true, status:'step2'});
 });
 
 
