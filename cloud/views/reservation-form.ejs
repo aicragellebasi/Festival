@@ -67,7 +67,8 @@
 			</form>	
 		</div>
 		<div id="step3">
-			<header><h4>STEP 3: That's it!</h4></header>	
+			<header><h4>STEP 3: That's it!</h4></header>
+			<p><span class="label label-warning">...</span></p>	
 			<p><span class="label label-success">Thanks for registering</span></p>
 		</div>
 	</section>
@@ -113,7 +114,10 @@
 		 				}else{
 		 					//alert('you are not in our database');
 		 				}
-	 					$('#step2').fadeIn();
+		 				$('#step1').fadeOut('fast', function(){
+		 					$('#step2').fadeIn();
+		 				});
+	 					
 	 					//$('#step1').fadeOut();
 		 			},
 		 			error:function(error){}
@@ -136,7 +140,7 @@
  		var participantId = $('#participantId').val();
  		var activity = $('#selectAct option:selected').attr("data-id");
 
- 		alert(activity);
+ 		//alert(activity);
 
  		if (fname && lname){
  			$.ajax({
@@ -153,19 +157,21 @@
 		 			success: function(data){
 					    // 
 		 				if (data.success){
-		 					
-		 					alert('success');
+		 					$('#step3 #label-success').html('Thanks for registering to '+data.activity.title+'. We look forward to seeing you!');
+	 						$('#step2').fadeOut('fast', function(){
+			 					$('#step3').fadeIn();
+			 				});
 	 					// 
 		 				}else{
 		 					alert('failure');
 		 				}
-	 					$('#step2').fadeIn();
+
 	 					//$('#step1').fadeOut();
 		 			},
 		 			error:function(error){}
 		 		});
 		 	}else{
-		 		$('#step1 .label-warning').html('provide name and last name');
+		 		$('#step2 .label-warning').html('provide name and last name');
 		 	}
  	});
 
