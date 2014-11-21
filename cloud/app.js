@@ -265,18 +265,49 @@ app.post('/ajax/processStep2', function(req, res) {
 	})
 });
 
-app.get('/staff/:id', function(req, res) {
+app.get('/staff', function(req, res) {
 
-	console.log('Trying to retrieve staff');
+	var query = new Parse.Query(Parse.User);
+	query.find({
+	  success: function(results) {
+
+		console.log("Successfully retrieved " + results.length + " staff members.");
+		res.render('staff', { 
+		  	message: '',
+		  	staffs: results,
+		  });
+	    
+	  },
+	  error: function(error) {
+	    console.log('failure retrieving staff members');
+		res.render('staff', { 
+		  	message: error.message,
+		  });
+	  }
+	});
+});
+
+app.get('/staff/:id', function(req, res) {
 
 	var query = new Parse.Query(Parse.User);
 	query.equalTo("objectId", req.params.id);
 	query.first({
 	  success: function(result) {
-	  	console.log('success retrieving staff');
+	  	// Define user role and showing it in human worlds! :)
+		var roles = result.get('role');
+		var role;
+		for (var i=0; i<roles.length; i++){
+			role = roles[i];
+			switch (role){
+	  	    	case 1: role='Instructor'; break;
+	  	    	case 2: role='Filmmaker'; break;
+	  	    	case 3: role='Speaker'; break;
+	  	    }
+		}
 		res.render('staff-bio', { 
 		  	message: 'staff',
-		  	user: result.get('bio'), 
+		  	user: result, 
+		  	role: role,
 		  }); 
 	  },
 	  error: function(error) {
@@ -286,11 +317,6 @@ app.get('/staff/:id', function(req, res) {
 		  });
 	  }
 	});
-
-
-
-
-  
 });
 
 

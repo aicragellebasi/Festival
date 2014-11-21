@@ -22,15 +22,20 @@
         </div>
 	</header>
 	<section id="featured">
-		<h2><%= role %></h2>
-		<p><%= user.get('fname') %> <%= user.get('lname') %></p>
+		<h2>Our Instructors, Speakers and Filmmakers</h2>
+		<p>We are proud to feature our Staff Members, all professional of the film industry and related to Spanish movies somehow...</p>
 		<div id="leadImg">
 			<img src="/img/mainImg-01.png">
 		</div>
 	</section>
 	<section id="main">
-		<h4><%= user.get('fname') %> <%= user.get('lname') %>'s Bio</h4>
-		<p><%= user.get('bio') %></p>
+
+		<% for (var i=0; i<staffs.length; i++){ %>
+		<% var staff = staffs[i] %>
+		<h4><%= staff.get('fname') %> <%= staff.get('lname') %></h4>
+		<p><%= staff.get('bio') %></p>
+		<a href="/staff/<%= staff.id %>" class="button">View Full Bio</a>
+		<% } %>
 	</section>
 	<footer><% include footer %></footer>
 </div>

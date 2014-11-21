@@ -221,6 +221,10 @@ article .circle{
 	margin: 0 1em 1em 0;
 	box-shadow: 0px 5px 2px #bbb;
 }
+/*default button*/
+button, a.button{background-color: #2887e6;}
+
+/*Buttons by categories*/
 #movies .circle, 
 #movies button, .moviesRow a.button{
 	background-color: #2887e6;
