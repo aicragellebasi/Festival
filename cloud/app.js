@@ -270,20 +270,19 @@ app.get('/staff/:id', function(req, res) {
 	console.log('Trying to retrieve staff');
 
 	var query = new Parse.Query(Parse.User);
-	query.equalTo("email", req.body.email1);
-	query.find({
+	query.equalTo("objectId", req.params.id);
+	query.first({
 	  success: function(result) {
 	  	console.log('success retrieving staff');
 		res.render('staff-bio', { 
 		  	message: 'staff',
-		  	actId: req.params.id 
+		  	user: result.get('bio'), 
 		  }); 
 	  },
 	  error: function(error) {
 	    console.log('failure retrieving staff');
 		res.render('staff-bio', { 
-		  	message: 'staff',
-		  	actId: req.params.id 
+		  	message: error.message,
 		  });
 	  }
 	});

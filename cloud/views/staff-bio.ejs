@@ -29,7 +29,7 @@
 		</div>
 	</section>
 	<section id="main">
-		bios
+		<p><%= user %></p>
 	</section>
 	<footer><% include footer %></footer>
 </div>
@@ -45,96 +45,7 @@
  <script type="text/javascript">
  $(document).ready(function(){
 
- 	$('#SubmitVerify').on('click',function(e){
- 		e.preventDefault();
- 		var email1 = $('#email1').val();
- 		var email2 = $('#email2').val();
- 		if (email1){
- 			if (email2){
-		 		$.ajax({
-		 			url:'/ajax/processStep1',
-		 			type:'POST',
-		 			dataType:'json',
-		 			data:{
-		 				actId:'<%= actId %>',
-		 				email1:email1,
-		 				email2:email2,
-		 			},
-		 			success: function(data){
-					    // 
-		 				if (data.success){
-		 					
-		 					//populate the user data:
-		 					$('#participantId').val(data.participant.objectId);
-		 					$('#fname').val(data.participant.fname);
-	 						$('#lname').val(data.participant.lname);
-	 						
-	 					// 
-		 				}else{
-		 					//alert('you are not in our database');
-		 				}
-		 				$('#step1').fadeOut('fast', function(){
-		 					$('#step2').fadeIn();
-		 				});
-	 					
-	 					//$('#step1').fadeOut();
-		 			},
-		 			error:function(error){}
-		 		});
-		 	}else{
-		 		$('#step1 .label-warning').html('Your emails do not match');
-		 	}
- 		}else{
- 			$('#step1 .label-warning').html('Please provide an email');
- 		}
- 	});
-
- 	$('#SubmitRegister').on('click',function(e){
- 		e.preventDefault();
-
- 		//alert($('#participantId').val());
-
- 		var fname = $('#fname').val();
- 		var lname = $('#lname').val();
- 		var participantId = $('#participantId').val();
- 		var activity = $('#selectAct option:selected').attr("data-id");
-
- 		//alert(activity);
-
- 		if (fname && lname){
- 			$.ajax({
-		 			url:'/ajax/processStep2',
-		 			type:'POST',
-		 			dataType:'json',
-		 			data:{
-		 				actId:'<%= actId %>',
-		 				fname:fname,
-		 				lname:lname,
-		 				participantId: participantId,
-		 				activity: activity,
-		 			},
-		 			success: function(data){
-					    // 
-		 				if (data.success){
-		 					$('#step3 #label-success').html('Thanks for registering to '+data.activity.title+'. We look forward to seeing you!');
-	 						$('#step2').fadeOut('fast', function(){
-			 					$('#step3').fadeIn();
-			 				});
-	 					// 
-		 				}else{
-		 					alert('failure');
-		 				}
-
-	 					//$('#step1').fadeOut();
-		 			},
-		 			error:function(error){}
-		 		});
-		 	}else{
-		 		$('#step2 .label-warning').html('provide name and last name');
-		 	}
- 	});
-
- });
+});
 
  </script>
 	
