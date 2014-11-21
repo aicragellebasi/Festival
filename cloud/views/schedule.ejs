@@ -45,7 +45,12 @@
 				<td>
 					<div class="details">
 						<h4><a href="/details-activity/<%= workshops[i].id %>"><%=workshops[i].get('title')%></a></h4>
-						<p><a href="/details-participant/id">Instructor TODO</a></p>
+						<p>
+							<% var staffs = workshops[i].get('staffID') %>
+							<% for (var j=0; j<staffs.length; j++){ %>
+								<a href="/staff/<%= staffs[j].id %>"><%= staffs[j].get('fname') %> <%= staffs[j].get('lname') %></a>,
+							<% } %>
+						</p>
 						<p><%=workshops[i].get('date')%></p>
 						<p class="intro"><%=workshops[i].get('desc')%></p>
 						<a href="http://festival.parseapp.com/reserve/<%= workshops[i].id %>" class="button">Reserve</a>
@@ -63,7 +68,12 @@
 				<td>
 					<div class="details">
 						<h4><a href="/details-activity/<%= movies[i].id %>"><%=movies[i].get('title')%></a></h4>
-						<p><a href="/details-participant/id">Instructor TODO</a></p>
+						<p>
+							<% var staffs = movies[i].get('staffID') %>
+							<% for (var j=0; j<staffs.length; j++){ %>
+								<a href="/staff/<%= staffs[j].id %>"><%= staffs[j].get('fname') %> <%= staffs[j].get('lname') %></a>, 
+							<% } %>
+						</p>
 						<p><%=movies[i].get('date')%></p>
 						<p class="intro"><%=movies[i].get('desc')%></p>
 						<a href="http://festival.parseapp.com/reserve/<%= movies[i].id %>" class="button">Reserve</a>
@@ -81,7 +91,12 @@
 				<td>
 					<div class="details">
 						<h4><a href="/details-activity/<%= debates[i].id %>"><%=debates[i].get('title')%></a></h4>
-						<p><a href="/details-participant/id">Instructor TODO</a></p>
+						<p>
+							<% var staffs = debates[i].get('staffID') %>
+							<% for (var j=0; j<staffs.length; j++){ %>
+								<a href="/staff/<%= staffs[j].id %>"><%= staffs[j].get('fname') %> <%= staffs[j].get('lname') %></a>,
+							<% } %>
+						</p>
 						<p><%=debates[i].get('date')%></p>
 						<p class="intro"><%=debates[i].get('desc')%></p>
 						<a href="http://festival.parseapp.com/reserve/<%= debates[i].id %>" class="button">Reserve</a>

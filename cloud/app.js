@@ -61,10 +61,17 @@ function getFestivalActivities(req, res, next){
 
 	var query = new Parse.Query(Activity);
 
+	// I include the Staff to retrieve instrutors, speakers etc...
+	query.include('staffID');
+
 	// I cannot pass a simple string to the pointer. I need to pass the instance
 	var festival = new Festival();
 	festival.id = app.locals.site.festivalID;
+
 	query.equalTo("festivalID", festival);
+
+	//Order the activities by ascending date 
+	query.ascending("date");
 	
 	query.find({
 		  success: function(activities) {
@@ -256,28 +263,41 @@ app.post('/ajax/processStep2', function(req, res) {
 			console.log('no activity retrieved');
 		}
 	})
+});
 
-/*
-	var Participant = Parse.Object.extend('Participant');
-	var participant = new Participant();
-	participant.set("objectId",req.body.participantId);
-	participant.set("fname", req.body.fname);
-	participant.set("lname", req.body.lname);
-	
-	participant.save(null, {
-	  success: function(participant) {
-	    res.json({success:true, status:'participant updated', participant: participant});
-	    console.log('participant updated');
-	  },
-	  error: function(participant, error) {
-	    // Show the error message somewhere and let the user try again.
-	    //alert("Error: " + error.code + " " + error.message);
-	    res.json({success:false, status:error.message});
-	    console.log('participant NOT updated '+error.message);
-	  }
+app.get('/staff/:id', function(req, res) {
+
+	console.log('Trying to retrieve staff');
+
+	var user = new Parse.User();
+	user.set('objectId',req.params.id);
+
+		user.find({
+		success: function(user){
+
+		console.log('success retrieving staff');
+			res.render('staff-bio', { 
+			  	message: 'staff',
+			  	actId: req.params.id 
+			  });
+			
+			
+		},
+		error: function(user){
+			console.log('failure retrieving staff');
+			res.render('staff-bio', { 
+			  	message: 'staff',
+			  	actId: req.params.id 
+			  });
+		}
 	});
-*/
-	//res.json({success:true, status:'step2'});
+
+
+
+
+
+
+  
 });
 
 
