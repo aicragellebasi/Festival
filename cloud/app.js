@@ -6,7 +6,8 @@ var app = express();
 // Global app configuration section
 app.set('views', 'cloud/views');  // Specify the folder to find templates
 app.set('view engine', 'ejs');    // Set the template engine
-//app.set('festival');
+
+//This is how I set up global variables. I am not using description. TODO check it and eventually take it out.
 app.locals({
     site: {
         festivalID: '',
@@ -14,6 +15,20 @@ app.locals({
     },
 });
 app.use(express.bodyParser());    // Middleware for reading request body
+
+// This is how I extend the Activity with a dinamical field for checking availability of seats. 
+// Ref: http://backbonejs.org/#Model-defaults
+var Activity = Parse.Object.extend('Activity', {
+	defaults:{
+		isFull: false
+	},
+	setFull: function (value){
+		this.isFull = value;
+	},
+	getFull: function(){
+		return this.isFull;
+	}
+});
 
 // This is an example of hooking up a request handler with a specific request
 // path and HTTP verb using the Express routing API.
@@ -57,7 +72,7 @@ function getCurrentFestival(req, res, next){
 /**/
 function getFestivalActivities(req, res, next){
 	var Festival = Parse.Object.extend('Festival');
-	var Activity = Parse.Object.extend('Activity');
+	//var Activity = Parse.Object.extend('Activity');
 
 	var query = new Parse.Query(Activity);
 
@@ -169,12 +184,9 @@ app.get('/reserve/:id', getCurrentFestival, getFestivalActivities, function(req,
 				seats = activity.get('roomID').get('seats');
 				totalParticipants = activity.get('ParticipantsID').length;
 				if (totalParticipants>=seats){ soldOut = true; } else { soldOut = false; }
-				console.log('Number of seats: '+activity.get('roomID').get('seats')+' for the activity: '+activity.get('title'));
-				console.log('Number of participants already signed up: '+activity.get('ParticipantsID').length);
-				console.log('sold out: '+soldOut);
+				activity.setFull(soldOut); // .setfull comes from where I extend Activity
+				//console.log('result: '+activity.getFull());
 			}
-
-			// check participants already signed up
 			
 			res.render('reservation-form', { 
 				message: 'Make your reservation now!',
@@ -183,7 +195,7 @@ app.get('/reserve/:id', getCurrentFestival, getFestivalActivities, function(req,
 				soldOut: soldOut, 
 			});
 		} else {
-			console.log('error resreve function');
+			console.log('error reserve function');
 		}	
 	}
 
@@ -233,7 +245,7 @@ app.post('/ajax/processStep2', function(req, res) {
 	console.log('updating participant...'+req.body.participantId);
 	console.log('with activity: '+req.body.activity);
 
-	var Activity = Parse.Object.extend('Activity');
+	//var Activity = Parse.Object.extend('Activity');
 	var query = new Parse.Query(Activity);
 
 	query.get(req.body.activity,{
@@ -249,26 +261,50 @@ app.post('/ajax/processStep2', function(req, res) {
 			
 			participant.save(null, {
 			  success: function(participant) {
-			  	//TODO: update activity with particiant
 
+			  	// 
 			  	var participant2add = activity.get("ParticipantsID");
 			  	participant.id = req.body.participantId;
-			  	participant2add.push(participant);
 
-			  	var act2update = new Activity();
-			  	act2update.id = activity.id;
-			  	act2update.set("ParticipantsID",participant2add);
+			  	console.log('TEST: '+participant2add);
+			  	console.log('TEST: '+participant2add.length);
 
-			  	act2update.save(null,{
-			  		success: function(activityUpdated){
-			  			res.json({success:true, status:'step3', activity: activityUpdated, participant: participant});
-			    		console.log('participant and activity updated');
-			  		},
-			  		error: function(activityUpdated, error){
-			  			res.json({success:false, status:error.message});
-			    		console.log('activity NOT updated'+error.message);
+			  	//Here I need to check if the participant is already registered to this activity.
+			  	var registered;
+			  	for (var i=0; i<participant2add.length; i++){
+			  		//console.log('participants ID already registered: '+participant2add[i].id);
+			  		if( participant2add[i].id == req.body.participantId){
+			  			//res.json({success:false, status:'You are already registered to this activity'});
+			  			//console.log('participants already registered: '+participant2add[i].id);
+			  			registered = true;
+			  		} else {
+			  			registered = false;
 			  		}
-			  	});
+			  	}
+
+			  	if (!registered){
+			  		participant2add.push(participant);
+
+				  	var act2update = new Activity();
+				  	act2update.id = activity.id;
+				  	act2update.set("ParticipantsID",participant2add);
+
+				  	act2update.save(null,{
+				  		success: function(activityUpdated){
+				  			res.json({success:true, status:'step3', activity: activityUpdated, participant: participant});
+				    		console.log('participant and activity updated');
+				  		},
+				  		error: function(activityUpdated, error){
+				  			res.json({success:false, status:error.status, message: error.message});
+				    		console.log('activity NOT updated'+error.message);
+				  		}
+				  	});
+				  } else {
+				  		res.json({success:false, status:'', message: 'Participant already registered: '});
+				  		console.log('Participant already registered');
+				  }
+
+			  	
 
 			    //res.json({success:true, status:'step3'});
 			    //console.log('participant updated');
