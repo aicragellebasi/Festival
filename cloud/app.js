@@ -64,6 +64,9 @@ function getFestivalActivities(req, res, next){
 	// I include the Staff to retrieve instrutors, speakers etc...
 	query.include('staffID');
 
+	// and the room to check availibilty of seats
+	query.include('roomID');
+
 	// I cannot pass a simple string to the pointer. I need to pass the instance
 	var festival = new Festival();
 	festival.id = app.locals.site.festivalID;
@@ -104,12 +107,19 @@ function getFestivalActivities(req, res, next){
 }
 
 
-app.get('/', getCurrentFestival, function(req, res) {
+app.get('/', getCurrentFestival, getFestivalActivities, function(req, res) {
 	if (req.festival){ // this req.festival comes from the function getCurrentFestival function
 		//console.log('dddd index: '+app.locals.site.festivalID);
-		res.render('index', { 
-	  		festival: req.festival
-	  	});
+		if(req.activities){
+			res.render('index', { 
+		  		festival: req.festival,
+		  		workshops: req.workshops,
+		  		movies: req.movies,
+		  		debates: req.debates
+		  	});
+		} else {
+			console.log("No activities found");
+		}
 	}else{
 		 console.log("No festival found");
 	}
@@ -117,7 +127,7 @@ app.get('/', getCurrentFestival, function(req, res) {
 
 app.get('/schedule', getCurrentFestival, function(req, res) {
 	if (req.festival){ // this req.festival comes from the function getCurrentFestival function
-		console.log('dddd sched no id: '+app.locals.site.festivalID);
+		//console.log('dddd sched no id: '+app.locals.site.festivalID);
 		res.redirect('/schedule/'+req.festival.id);
 	}else{
 		 console.log("No festival found");
@@ -147,14 +157,30 @@ app.get('/schedule/:id', getCurrentFestival, getFestivalActivities, function(req
 // Steps
 app.get('/reserve/:id', getCurrentFestival, getFestivalActivities, function(req, res) {
 
-	if (req.festival){
-		// Find activities TODO: filter by festival id
-		if(req.activities){
-			console.log('success resreve function');
+	if (req.festival){ // success retrieving current fest
+		if(req.activities){ // success retrieving current fest activities
+
+			// check seats availability
+			var seats;
+			var totalParticipants;
+			var soldOut;
+			for (var i=0; i<req.activities.length; i++){
+				var activity = req.activities[i];
+				seats = activity.get('roomID').get('seats');
+				totalParticipants = activity.get('ParticipantsID').length;
+				if (totalParticipants>=seats){ soldOut = true; } else { soldOut = false; }
+				console.log('Number of seats: '+activity.get('roomID').get('seats')+' for the activity: '+activity.get('title'));
+				console.log('Number of participants already signed up: '+activity.get('ParticipantsID').length);
+				console.log('sold out: '+soldOut);
+			}
+
+			// check participants already signed up
+			
 			res.render('reservation-form', { 
 				message: 'Make your reservation now!',
 				actId: req.params.id,
-				activities: req.activities, 
+				activities: req.activities,
+				soldOut: soldOut, 
 			});
 		} else {
 			console.log('error resreve function');

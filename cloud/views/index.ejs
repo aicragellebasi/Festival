@@ -17,7 +17,7 @@
             </a>
         </div>
         <div id="logoTxt">
-                <h1><a href="index.html">Primavera de los<br>Realizadores</a></h1>
+                <h1><a href="index.html">Primavera de los Realizadores</a></h1>
                 <h4>New York City</h4>
         </div>
 	</header>
@@ -31,17 +31,20 @@
 	<section id="main">
 		<article id="movies">
 			<div class="flor">
-				<img src="img/featmovie.jpg">
+				<a href="/schedule/<%= festival.id %>"><img src="img/featmovie.jpg"></a>
+				<!--a href="/schedule/<%= festival.id %>"><button>Check the schedule</button></a>
+				<a href="/schedule/<%= festival.id %>"><button>Reserve now!</button></a-->
 			</div>
 			<div class="excerpt">
 				<h3><a href="/schedule/<%= festival.id %>">Movies</a></h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<p>You think you like Spanish movies? Well, with our selection of movies you are not only going to like it, you are going to love it! One movie per day preceded by a workshop, followed by a debate. Make sure to secure your spot: Check our <a href="/schedule/<%= festival.id %>">schedule of events</a>.</p>
 				<div class="details">
-					<h4><a href="">Title movie</a></h4>
+					<h4><a href=""><%= movies[0].get('title') %></a></h4>
 					<p><a href="">Author</a></p>
 					<p>6PM</p>
 				</div>
-				<a href="/schedule/<%= festival.id %>"><button>Check all scheduled movies...</button></a>
+				<a href="/schedule/<%= festival.id %>"><button>Check the schedule</button></a>
+				<a href="/schedule/<%= festival.id %>"><button>Reserve now!</button></a>
 			</div>
 		</article>
 		<article id="workshops">
