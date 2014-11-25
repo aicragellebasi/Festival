@@ -58,7 +58,7 @@
 			  <select id="selectAct">
 			  	<% if (activities) { %>
 				<% for (var i=0; i<activities.length; i++){ %>
-					<option id="activityId" data-id="<%= activities[i].id %>"><%=activities[i].get('title')%></option>
+					<option id="activityId" data-id="<%= activities[i].id %>" <%= activities[i].getFull() ? 'disabled' : '' %>><%=activities[i].get('title')%></option>
 				<% } %>
 				<% } %>
 			  </select>
@@ -163,12 +163,14 @@
 			 				});
 	 					// 
 		 				}else{
-		 					alert('failure');
+		 					$('#step2 .label-warning').html('You are already registered to this activity, please choose another one.');
 		 				}
 
 	 					//$('#step1').fadeOut();
 		 			},
-		 			error:function(error){}
+		 			error:function(error){
+		 				alert('Failed: '+error.message);
+		 			}
 		 		});
 		 	}else{
 		 		$('#step2 .label-warning').html('provide name and last name');
