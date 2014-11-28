@@ -65,17 +65,44 @@ img{
 .circle{
 	border-radius: 50%;
 }
-
-/* ************** Absolute to navbar */
-nav#topNav{
+/* ************** navbar mobile dropdown button */
+nav#topNavMobiles{
+	display: block;
+	width: 100%;
+	background-color: #f9e72f;
+	padding: 0.5rem;
+}
+/* ************** navbar desktops dropdown */
+nav#topNavDesktops{
+	/**/display: none;
+	width: 100%;
+	background-color: #f9e72f;
+	padding: 0.5rem;
+}
+#leftNav{
+	width: 100%;
+	text-align: center;
+}
+#rightNav{
+	/*display: none;*/
+	width: 100%;
+	text-align: center;
+}
+ul{
+	/**/margin: 0;
+	list-style-type: none;
+	padding: 0;
+}
+/* ************** Absolute to navbar the first one I did */
+nav#phoneNav{
 	position: absolute;
 	top: 0.5em;
 	right: 0;
 }
-nav#topNav a:link,nav#topNav a:visited,nav#topNav a:hover,nav#topNav a:active{
+nav#phoneNav a:link,nav#phoneNav a:visited,nav#phoneNav a:hover,nav#phoneNav a:active{
 	color: black;
 }
-nav#topNav a#menu{
+nav#phoneNav a#menu{
 	float: left;
 }
 #menu span{
@@ -324,8 +351,30 @@ footer nav ul{
 	}
 	
 	/* ************** nav */
-	nav#topNav{
-		display: none;
+	nav#topNavDesktops{
+		overflow: auto;
+		display: block;
+	}
+	#leftNav{
+		width: 45%;
+		float: left;
+		text-align: left;
+		margin: auto;
+	}
+	#rightNav{
+		display: inline-block;
+		width: 45%;
+		float: right;
+		text-align: right;
+	}
+	#leftNav ul li{
+		padding: 0.1em 0.5em 0.2em 0.5em;
+		border-bottom: none;
+		display: inline;
+		border-right: 3px dotted #ff2e00;
+	}
+	#leftNav ul li:last-of-type{
+		border-right: none;
 	}
 	/* ************** toggle nav */
 	ul#toggleNav{
