@@ -147,7 +147,7 @@
 		 			success: function(data){
 					    // 
 		 				if (data.success){
-		 					$('#step3 #label-success').html('Thanks for registering to '+data.activity.title+'. We look forward to seeing you!');
+		 					$('#step3 .label-success').html('<p>Thanks for registering to '+data.activityTitle+'.</p><p>Date:'+data.activityDate+'.</p><p>Location:<a href="http://nyork.cervantes.es/en/default.shtm" target="_blank">Instituto Cervantez</a>:<br>211 E 49th St, New York, NY 10017<br>(212) 308-7720</p><p>Make sure you arrive on time, we will be checking your name at the entrance, please bring a photo ID.<br> We look forward to seeing you!</p>');
 	 						$('#step2').fadeOut('fast', function(){
 			 					$('#step3').fadeIn();
 			 				});
