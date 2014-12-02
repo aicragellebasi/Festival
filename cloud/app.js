@@ -30,11 +30,6 @@ var Activity = Parse.Object.extend('Activity', {
 	}
 });
 
-// This is an example of hooking up a request handler with a specific request
-// path and HTTP verb using the Express routing API.
-app.get('/hello', function(req, res) {
-  res.render('hello', { message: 'Congrats, you just set up your app!' });
-});
 
 // // Example reading from the request query string of an HTTP get request.
 // app.get('/test', function(req, res) {
@@ -121,7 +116,6 @@ function getFestivalActivities(req, res, next){
 		});
 }
 
-
 app.get('/', getCurrentFestival, getFestivalActivities, function(req, res) {
 	if (req.festival){ // this req.festival comes from the function getCurrentFestival function
 		//console.log('dddd index: '+app.locals.site.festivalID);
@@ -179,6 +173,7 @@ app.get('/reserve/:id', getCurrentFestival, getFestivalActivities, function(req,
 			var seats;
 			var totalParticipants;
 			var soldOut;
+
 			for (var i=0; i<req.activities.length; i++){
 				var activity = req.activities[i];
 				seats = activity.get('roomID').get('seats');
@@ -285,20 +280,33 @@ app.post('/ajax/processStep2', function(req, res) {
 			  	if (!registered){
 			  		participant2add.push(participant);
 
-				  	var act2update = new Activity();
-				  	act2update.id = activity.id;
-				  	act2update.set("ParticipantsID",participant2add);
+				  	//var act2update = new Activity();
+				  	
+				  	//act2update.id = activity.id;
 
-				  	act2update.save(null,{
-				  		success: function(activityUpdated){
-				  			res.json({success:true, status:'step3', activity: activityUpdated, participant: participant});
-				    		console.log('participant and activity updated');
-				  		},
-				  		error: function(activityUpdated, error){
-				  			res.json({success:false, status:error.status, message: error.message});
-				    		console.log('activity NOT updated'+error.message);
-				  		}
-				  	});
+
+				  	var updateQuery = new Parse.Query(Activity);
+				  	updateQuery.get(activity.id,{
+				  		success: function(act2update){
+					  	act2update.set("ParticipantsID",participant2add);
+					  	act2update.save(null,{
+					  		success: function(activityUpdated){
+					  			res.json({success:true, status:'step3', activityTitle: activityUpdated.get('title'), activityDate: activityUpdated.get('date'), participant: participant});
+					    		console.log('participant and activity updated');
+					    		console.log('activity updated ID: '+activityUpdated.id );
+					  		},
+					  		error: function(activityUpdated, error){
+					  			res.json({success:false, status:error.status, message: error.message});
+					    		console.log('activity NOT updated'+error.message);
+					  		}
+					  	});
+					  },
+					  error: function(){
+
+					  }
+					 });
+
+
 				  } else {
 				  		res.json({success:false, status:'', message: 'Participant already registered: '});
 				  		console.log('Participant already registered');
