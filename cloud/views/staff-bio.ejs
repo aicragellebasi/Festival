@@ -11,23 +11,13 @@
 
 <div class="container">
 	<header>
-		<div id="logoImg">
-            <a href="#">
-                <img src="/img/logo.png">
+            <a href="/">
+                <img src="/img/logo.png" id="logo">
             </a>
-        </div>
-        <div id="logoTxt">
-                <h1><a href="#">Primavera de los<br>Realizadores</a></h1>
-                <h4>New York City</h4>
-        </div>
+                <h1><a href="index.html">Primavera de los Realizadores</a></h1>
+                <h2><%= user.get('fname') %> <%= user.get('lname') %><br><%= role %></h2>
+                <img src="/img/mainImg-01.png" id="perroAndalous">
 	</header>
-	<section id="featured">
-		<h2><%= role %></h2>
-		<p><%= user.get('fname') %> <%= user.get('lname') %></p>
-		<div id="leadImg">
-			<img src="/img/mainImg-01.png">
-		</div>
-	</section>
 	<section id="main">
 		<h4><%= user.get('fname') %> <%= user.get('lname') %>'s Bio</h4>
 		<p><%= user.get('bio') %></p>

@@ -11,80 +11,40 @@
 
 <div class="container">
 	<header>
-		<div id="logoImg">
-            <a href="index.html">
-                <img src="img/logo.png">
-            </a>
-        </div>
-        <div id="logoTxt">
-                <h1><a href="index.html">Primavera de los Realizadores</a></h1>
-                <h4>New York City</h4>
-        </div>
+        <a href="/"><img src="/img/logo.png" id="logo"></a>
+        <h1><a href="/">Primavera de los Realizadores</a></h1>
+        <h2><%= festival.get('desc') %></h2>
+        <img src="/img/mainImg-01.png" id="perroAndalous">
 	</header>
-
-	<section id="featured">
-		<h2><%= festival.get('desc') %></h2>
-		<div id="leadImg">
-			<img src="img/mainImg-01.png">
-		</div>
-	</section>
-	<section id="main">
+	<section id="featuredEvents">
 		<article id="movies">
+			<h3><a href="/schedule/<%= festival.id %>">Movies</a></h3>
 			<div class="flor">
 				<a href="/schedule/<%= festival.id %>"><img src="img/featmovie.jpg"></a>
-				<!--a href="/schedule/<%= festival.id %>"><button>Check the schedule</button></a>
-				<a href="/schedule/<%= festival.id %>"><button>Reserve now!</button></a-->
 			</div>
 			<div class="excerpt">
-				<h3><a href="/schedule/<%= festival.id %>">Movies</a></h3>
-				<p>You think you like Spanish movies? Well, with our selection of movies you are not only going to like it, you are going to love it! One movie per day preceded by a workshop, followed by a debate. Make sure to secure your spot: Check our <a href="/schedule/<%= festival.id %>">schedule of events</a>.</p>
-				<div class="details">
-					<h4><a href=""><%= movies[0].get('title') %></a></h4>
-					<p><a href="">Author</a></p>
-					<p>6PM</p>
-				</div>
-				<a href="/schedule/<%= festival.id %>"><button>Check the schedule</button></a>
+				<p>You think you like Spanish movies? Well, with our selection of movies you are not only going to like it, you are going to love it! One movie per day preceded by a workshop, followed by a debate. </p>
 				<a href="/schedule/<%= festival.id %>"><button>Reserve now!</button></a>
 			</div>
 		</article>
 		<article id="workshops">
+			<h3><a href="/schedule/<%= festival.id %>">Worskshops</a></h3>
 			<div class="flor">
 				<img src="img/featdebate.jpg">
 			</div>
 			<div class="excerpt">
-				<h3><a href="/schedule/<%= festival.id %>">Worskshops</a></h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				<div class="details">
-					<h4><a href="">Title Workshop</a></h4>
-					<p><a href="">Instructor</a></p>
-					<p>4PM</p>
-				</div>
-				<a href="/schedule/<%= festival.id %>"><button>Check all scheduled workshops...</button></a>
+				<p>You want to learn more about Spanish Filmmakers, their history, their theories. Participate in one of our three workshops and become a Spanish movie savvy.</p>
+				<a href="/schedule/<%= festival.id %>"><button>Reserve now!</button></a>
 			</div>
 		</article>
 		<article id="debates">
+			<h3><a href="/schedule/<%= festival.id %>">Debates</a></h3>
 			<div class="flor">
 				<img src="img/featworkshop.jpg">
 			</div>
 			<div class="excerpt">
-				<h3><a href="/schedule/<%= festival.id %>">Debates</a></h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				<div class="details">
-					<h4><a href="">Title Debate</a></h4>
-					<p><a href="">Speaker</a></p>
-					<p>8PM</p>
-				</div>
-				<a href="/schedule/<%= festival.id %>"><button>Check all scheduled debates...</button></a>
-			</div>
-		</article>
-		<article id="participate">
-			<div class="flor">
-				<img src="img/featparticipa.jpg">
-			</div>
-			<div class="excerpt">
-				<h3><a href="">Participate!</a></h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				<a href=""><button>Participate now!</button></a>
+				<p>After seeing a movie, you like to share your feelings? Then our debates are for you. After each screening, we'll be leading debates with professionals of the industry.</p>
+				<a href="/staff"><button>Speakers</button></a>
 			</div>
 		</article>
 	</section>

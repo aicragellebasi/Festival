@@ -19,9 +19,8 @@ html, body{
 
 /* ************** Setting up font sizes at module level. cf: http://css-tricks.com/rems-ems/; */
 nav{font-size: 1rem;}
-header{font-size: 0.6rem;}
+header{font-size: 1rem;}
 section{font-size: 1rem;}
-section#featured{font-size: 0.6rem;}
 footer{font-size: 0.8rem;}
 
 /* ************** Commun elements Styles */
@@ -60,50 +59,22 @@ img{
 
 /* ************** Commun custom Styles */
 .container{
-	margin-top: 2em;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 1.5rem 0;
 }
 .circle{
 	border-radius: 50%;
 }
+#fixedTopNav{
+	position: relative;
+}
 /* ************** navbar mobile dropdown button */
 nav#topNavMobiles{
-	display: block;
+	display: inline-block;
 	width: 100%;
 	background-color: #f9e72f;
 	padding: 0.5rem;
-}
-/* ************** navbar desktops dropdown */
-nav#topNavDesktops{
-	/**/display: none;
-	width: 100%;
-	background-color: #f9e72f;
-	padding: 0.5rem;
-}
-#leftNav{
-	width: 100%;
-	text-align: center;
-}
-#rightNav{
-	/*display: none;*/
-	width: 100%;
-	text-align: center;
-}
-ul{
-	/**/margin: 0;
-	list-style-type: none;
-	padding: 0;
-}
-/* ************** Absolute to navbar the first one I did */
-nav#phoneNav{
-	position: absolute;
-	top: 0.5em;
-	right: 0;
-}
-nav#phoneNav a:link,nav#phoneNav a:visited,nav#phoneNav a:hover,nav#phoneNav a:active{
-	color: black;
-}
-nav#phoneNav a#menu{
-	float: left;
 }
 #menu span{
 	margin:0.2em;
@@ -116,37 +87,48 @@ nav#phoneNav a#menu{
 #menu:hover{
 	cursor: pointer;
 }
-	/* ************** toggle nav */
-	ul#toggleNav{
-		display: none;
-		top: 50px;
-		position: relative;
-		list-style-type: none;
-		padding-left: 0;
-		border-top: 3px dotted #ff2e00;
-	}
-	ul#toggleNav li{
+/* ************** navbar desktops dropdown */
+nav#topNavDesktops{
+	/**/display: none;
+	width: 100%;
+	background-color: #f9e72f;
+	padding: 0 0.5rem 0.5rem 0.5rem;
+}
+#leftNav{
+	width: 100%;
+	text-align: center;
+}
+#rightNav{
+	/*display: none;*/
+	width: 100%;
+	text-align: center;
+	margin-top: 0.5rem;
+}
+#rightNav a:hover{color: #2887e6;}
+#leftNav ul{
+	/**/margin: 0;
+	list-style-type: none;
+	padding: 0;
+	border-top: 3px dotted #ff2e00;
+}
+	#leftNav ul li{
 		/**/text-align: center;
 		padding: 0.5em 0;
 		border-bottom: 3px dotted #ff2e00;
 		text-transform: uppercase;
 	}
-	ul#toggleNav li a{
-		/*text-align: right;
-		float: right;*/
+	#leftNav ul li a{
 		text-decoration: none;
+		color: #2887e6;
 	}
-	ul#toggleNav li a:link,
-	ul#toggleNav li a:visited,
-	ul#toggleNav li a:hover,
-	ul#toggleNav li a:active{
-		/*text-align: right;
-		float: right;*/
+	#leftNav ul li a:hover{
+		color: #00A701;
 	}
-	ul#toggleNav li:hover{
-		background-color: #EEE;
+	#leftNav ul li:hover{
 		cursor: pointer;
+		/*color: #2887e6; #0087EA*/
 	}
+
 
 
 
@@ -154,67 +136,50 @@ nav#phoneNav a#menu{
 header{
 	width: 100%;
 	float: left;
-	margin-top: 3em;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 3px dotted #ff2e00;
 }
-#logoImg{
+header h2{
+	font-size: 1rem;
+}
+header img{
+	width: auto;
+}
+img#logo{
 	/**/width: 30%;
 	float: left;
 	padding-right: 1em;
-	padding-left: 1em;
-
+	min-width: 150px;
+	max-width: 350px;
 }
-#logoImg{
-	max-width: 250px;
-	min-width: 90px;
-}
-#logoTxt{
-	/**/width: 70%;
-	float: left;
-}
+header img#perroAndalous{
+		display: none;
+	}
 
 /* ************** Sections: Main content and featured; */
+
+
+
 section{
 	clear: both;
 	width: 100%;
 	padding: 1em;
+	overflow: auto;
 }
-section#featured{
-	background-color: #f9e72f;
+
+#featuredEvents article{
 	text-align: center;
-	float: left;
-	padding: 0 10px;
-	box-shadow: 0px 5px 2px #ddd;
 }
-section#featured p{
-	clear: left;
-	margin-bottom: 1.5em;
-}
-#leadImg{
-	display: none;
-	position: relative;
-}
-#leadImg img{
-	float: right;
-	position: absolute;
-	right: 0;
-}
-#homePage #leadImg img{
-	top: -9em;
-}
-#schedule #leadImg img, #reserve #leadImg img, #contactPage #leadImg img{
-	top: -15em;
-}
-article, table{
-	padding: 1em 0;
+#featuredEvents article .flor{
+	width: 150px;
+	margin: 0 auto;
+	/*height: 150px;
+	margin: 0 1em 0 0;*/
 }
 table{
 	/**/width: 100%;
-}
-article .flor{
-	float: left;
-	width: 150px;
-	/*height: 150px;*/
-	margin: 0 1em 0 0;
 }
 table .flor{ 
 	display: none;
@@ -240,13 +205,6 @@ table th{
 table td{
 	/**/width: 100%;
 	display: block;
-}
-article .circle{
-	float: left;
-	width: 150px;
-	height: 150px;
-	margin: 0 1em 1em 0;
-	box-shadow: 0px 5px 2px #bbb;
 }
 /*default button*/
 button, a.button{background-color: #2887e6;}
@@ -341,120 +299,88 @@ footer nav ul{
 	html, body{
 		font-size: 18px;
 	}
-
 	/* ************** Setting up font sizes at module level. cf: http://css-tricks.com/rems-ems/; */
-	header{font-size: 1.2rem;}
-	section#featured{font-size: 1rem;}
-
+	header{}
 	.container{
-		margin-top: 0;
+		padding: 4rem 0;
 	}
 	
 	/* ************** nav */
+	#fixedTopNav{
+		position: fixed;
+		width: 100%;
+		/*margin-top: -20px;*/
+	}
+	nav#topNavMobiles{
+		display: none;
+	}
 	nav#topNavDesktops{
 		overflow: auto;
 		display: block;
+		padding: 0.5rem;
 	}
 	#leftNav{
-		width: 45%;
+		width: 70%;
 		float: left;
 		text-align: left;
 		margin: auto;
+		margin-top: 5px;
 	}
 	#rightNav{
 		display: inline-block;
-		width: 45%;
+		width: 30%;
 		float: right;
 		text-align: right;
+		margin-top: 0;
+	}
+	#leftNav ul {
+		border-top: none;
 	}
 	#leftNav ul li{
 		padding: 0.1em 0.5em 0.2em 0.5em;
 		border-bottom: none;
 		display: inline;
 		border-right: 3px dotted #ff2e00;
+		text-transform: uppercase;
 	}
 	#leftNav ul li:last-of-type{
 		border-right: none;
-	}
-	/* ************** toggle nav */
-	ul#toggleNav{
-		display: block;
-		top: 0px;
-		border-top: none;
-		text-align: center;
-	}
-	ul#toggleNav li{
-		/**/text-align: center;
-		padding: 0.1em 0.5em 0.2em 0.5em;
-		border-bottom: none;
-		display: inline;
-		border-right: 3px dotted #ff2e00;
-	}
-	ul#toggleNav li:last-of-type{
-		border-right: none;
-	}
-	ul#toggleNav li a{
-		/*text-align: right;
-		float: right;*/
-		text-decoration: none;
-	}
-	ul#toggleNav li a:link,
-	ul#toggleNav li a:visited,
-	ul#toggleNav li a:hover,
-	ul#toggleNav li a:active{
-		/*text-align: right;
-		float: right;*/
-	}
-	ul#toggleNav li:hover{
-		background-color: #EEE;
-		cursor: pointer;
 	}
 
 	/* ************** Header */
 	header{
 		margin-top: 0;
 	}
-
-	#logoImg{
-	/**/width: 25%;
-	float: left;
-
+	img#logo{
+		/**/width: 20%;
 	}
-	#logoTxt{
-		/**/width: 45%;
+	header h1, header h2, header h3{
 		float: left;
+		max-width: 57%;
+		min-width: 50%;
+	}
+	header img#perroAndalous{
+		max-width: 20%;
+		float: right;
+		margin-top: -95px;
+		display: inline-block;
 	}
 
 	/* ************** Sections main content */
-	section#featured{
-		text-align: left;
-	}
-	#featured h2{
-		display: inline-block;
+
+
+	#featuredEvents article{
 		float: left;
-		width: 70%;
-	}
-	#leadImg{
 		width: 30%;
-		display: inline-block;
-		float: right;
 	}
-	#featured img{
-		max-width: 300px;
-		
+	#featuredEvents article p{
+		min-height: 185px;
+		padding: 0 15px;
 	}
-	#homePage article{
-		float: left;
-		width: 50%;
-	}
-	article .excerpt{
-		float: left;
-		width: 60%;
-	}
+
 
 	table td{
 		/**/width: 28%;
-
 	}
 	table td:first-child{ /* That is weird but this is the only solution I came up with to fix the size of the flor image in the table of schedule */
 		/*border: 1px solid green;*/
