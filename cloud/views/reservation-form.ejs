@@ -48,7 +48,7 @@
 			  <select id="selectAct">
 			  	<% if (activities) { %>
 				<% for (var i=0; i<activities.length; i++){ %>
-					<option id="activityId" data-id="<%= activities[i].id %>" <%= activities[i].getFull() ? 'disabled' : '' %>><%=activities[i].get('title')%></option>
+					<option id="activityId" data-id="<%= activities[i].id %>" <%= activities[i].getFull() ? 'disabled' : '' %> <%= activities[i].id == actId && activities[i].getFull() == false ? 'selected' : '' %>> <%=activities[i].get('title')%> <%= activities[i].getFull() ? 'FULL' : '' %></option>
 				<% } %>
 				<% } %>
 			  </select>
