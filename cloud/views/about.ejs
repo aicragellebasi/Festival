@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<% include metas %>
+<title>Primavera de los Realizadores</title> 
+</head>
+
+<body id="homePage">
+
+<% include nav %>
+
+<div class="container">
+	<header>
+        <a href="/"><img src="/img/logo.png" id="logo"></a>
+        <h1><a href="/">Primavera de los Realizadores</a></h1>
+        <h2><%= festival.get('desc') %></h2>
+        <figure><img src="/img/mainImg-01.png" id="perroAndalous" alt="Un Perro Andalus"></figure>
+	</header>
+	<section>
+		<article>
+			<iframe width="420" height="315" src="//www.youtube.com/embed/371P8O3hf_8" frameborder="0" allowfullscreen></iframe>
+			<p>Are Hispanic productions renowned enough for the North American audience? Could they be more diffused in the United States, particularly in New York City?</p>
+
+			<p>We think that Latino and Spanish producers have a lot to show to the North American audience.</p>
+
+			<p>With screenings, conferences and other diverse activities “Primavera de los Realizadores” is the moment for Hispanic cine to shine and to further develop its relations with local New York City-based producers.</p>
+
+			<p>“Primavera de los Realizadores” is looking for partners and sponsors for its first upcoming edition in spring 2015. We call any organizations, institutions or professionals to join them and the Instituto Cervantes-New York for the organization of this event. If you are interested, please <a href="/contact" target="_blank">contact us</a>.</p>
+
+			<p>“Primavera de los Realizadores” is a festival sponsored by <a href="http://www.cpiloto.org" target="_blank">Colectivo Piloto</a>, a non-profit organization dedicated to promoting Culture and Education by giving individuals an opportunity to thrive within their own communities.</p>
+		</article>
+	</section>
+	<footer><% include footer %></footer>
+</div>
+</body>
+</html>

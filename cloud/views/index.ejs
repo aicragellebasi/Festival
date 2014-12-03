@@ -14,14 +14,14 @@
         <a href="/"><img src="/img/logo.png" id="logo"></a>
         <h1><a href="/">Primavera de los Realizadores</a></h1>
         <h2><%= festival.get('desc') %></h2>
-        <img src="/img/mainImg-01.png" id="perroAndalous">
+        <figure><img src="/img/mainImg-01.png" id="perroAndalous" alt="Un Perro Andalus"></figure>
 	</header>
 	<section id="featuredEvents">
 		<article id="movies">
 			<h3><a href="/schedule/<%= festival.id %>">Movies</a></h3>
-			<div class="flor">
-				<a href="/schedule/<%= festival.id %>"><img src="img/featmovie.jpg"></a>
-			</div>
+			<figure class="flor">
+				<a href="/schedule/<%= festival.id %>"><img src="img/featmovie.jpg" alt="Movies"></a>
+			</figure>
 			<div class="excerpt">
 				<p>You think you like Spanish movies? Well, with our selection of movies you are not only going to like it, you are going to love it! One movie per day preceded by a workshop, followed by a debate. </p>
 				<a href="/schedule/<%= festival.id %>"><button>Reserve now!</button></a>
@@ -29,9 +29,9 @@
 		</article>
 		<article id="workshops">
 			<h3><a href="/schedule/<%= festival.id %>">Worskshops</a></h3>
-			<div class="flor">
-				<img src="img/featdebate.jpg">
-			</div>
+			<figure class="flor">
+				<img src="img/featdebate.jpg"  alt="Workshops">
+			</figure>
 			<div class="excerpt">
 				<p>You want to learn more about Spanish Filmmakers, their history, their theories. Participate in one of our three workshops and become a Spanish movie savvy.</p>
 				<a href="/schedule/<%= festival.id %>"><button>Reserve now!</button></a>
@@ -39,9 +39,9 @@
 		</article>
 		<article id="debates">
 			<h3><a href="/schedule/<%= festival.id %>">Debates</a></h3>
-			<div class="flor">
-				<img src="img/featworkshop.jpg">
-			</div>
+			<figure class="flor">
+				<img src="img/featworkshop.jpg"  alt="Debates">
+			</figure>
 			<div class="excerpt">
 				<p>After seeing a movie, you like to share your feelings? Then our debates are for you. After each screening, we'll be leading debates with professionals of the industry.</p>
 				<a href="/staff"><button>Speakers</button></a>

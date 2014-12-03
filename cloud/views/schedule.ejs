@@ -14,9 +14,9 @@
             <a href="/">
                 <img src="/img/logo.png" id="logo">
             </a>
-                <h1><a href="index.html">Primavera de los Realizadores</a></h1>
+                <h1><a href="/">Primavera de los Realizadores</a></h1>
                 <h2>April 16, 17 and 18. Instituto Cervantes. New York.<br><%= message %></h2>
-                <img src="/img/mainImg-01.png" id="perroAndalous">
+                <figure><img src="/img/mainImg-01.png" id="perroAndalous" alt="Un Perro Andalus"></figure>
 	</header>
 	<section id="main">
 		<table cellpadding="10">
@@ -41,10 +41,11 @@
 								<a href="/staff/<%= staffs[j].id %>"><%= staffs[j].get('fname') %> <%= staffs[j].get('lname') %></a>,
 							<% } %>
 						</p>
-						<%
-							var date = new Date(workshops[i].get('date'));
-						%>
-						<p><%=date.getMonth()%>/<%=date.getDate()%>/<%=date.getFullYear()%> <%=date.getHours()%>:<%=date.getMinutes()>9 ? date.getMinutes() : ('0' + date.getMinutes())%></p>
+						<p>
+							<!-- Formating the date: TODO when I have time: a function in app.js -->
+							<% var date = new Date(workshops[i].get('date')); %>
+							<%=date.getMonth()%>/<%=date.getDate()%>/<%=date.getFullYear()%> <%=date.getHours()%>:<%=date.getMinutes()>9 ? date.getMinutes() : ('0' + date.getMinutes())%>
+						</p>
 						<p class="intro"><%=workshops[i].get('desc')%></p>
 						<a href="http://festival.parseapp.com/reserve/<%= workshops[i].id %>" class="button">Reserve</a>
 					</div>
@@ -67,7 +68,11 @@
 								<a href="/staff/<%= staffs[j].id %>"><%= staffs[j].get('fname') %> <%= staffs[j].get('lname') %></a>, 
 							<% } %>
 						</p>
-						<p><%=movies[i].get('date')%></p>
+						<p>
+							<!-- Formating the date: TODO when I have time: a function in app.js -->
+							<% var date = new Date(movies[i].get('date')); %>
+							<%=date.getMonth()%>/<%=date.getDate()%>/<%=date.getFullYear()%> <%=date.getHours()%>:<%=date.getMinutes()>9 ? date.getMinutes() : ('0' + date.getMinutes())%>
+						</p>
 						<p class="intro"><%=movies[i].get('desc')%></p>
 						<a href="http://festival.parseapp.com/reserve/<%= movies[i].id %>" class="button">Reserve</a>
 					</div>
@@ -90,7 +95,11 @@
 								<a href="/staff/<%= staffs[j].id %>"><%= staffs[j].get('fname') %> <%= staffs[j].get('lname') %></a>,
 							<% } %>
 						</p>
-						<p><%=debates[i].get('date')%></p>
+						<p>
+							<!-- Formating the date: TODO when I have time: a function in app.js -->
+							<% var date = new Date(debates[i].get('date')); %>
+							<%=date.getMonth()%>/<%=date.getDate()%>/<%=date.getFullYear()%> <%=date.getHours()%>:<%=date.getMinutes()>9 ? date.getMinutes() : ('0' + date.getMinutes())%>
+						</p>
 						<p class="intro"><%=debates[i].get('desc')%></p>
 						<a href="http://festival.parseapp.com/reserve/<%= debates[i].id %>" class="button">Reserve</a>
 					</div>

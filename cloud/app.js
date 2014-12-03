@@ -134,6 +134,17 @@ app.get('/', getCurrentFestival, getFestivalActivities, function(req, res) {
 	}
 });
 
+app.get('/about', getCurrentFestival, function(req, res) {
+	if (req.festival){ // this req.festival comes from the function getCurrentFestival function
+		//console.log('dddd sched no id: '+app.locals.site.festivalID);
+		res.render('about', { 
+	  		festival: req.festival
+	  	});
+	}else{
+		 console.log("No festival found");
+	}
+});
+
 app.get('/schedule', getCurrentFestival, function(req, res) {
 	if (req.festival){ // this req.festival comes from the function getCurrentFestival function
 		//console.log('dddd sched no id: '+app.locals.site.festivalID);
@@ -281,8 +292,9 @@ app.post('/ajax/processStep2', function(req, res) {
 			  		participant2add.push(participant);
 
 				  	//var act2update = new Activity();
-				  	
 				  	//act2update.id = activity.id;
+				  	// Note: I was only doing this (above) before. But the thing is that if I want to send to the view the activity updated, I actually have to query it. So before the act2update.save(), I need to query (updateQuery.get())
+				  	// Otherwhise, it will save but not return the activity.
 
 
 				  	var updateQuery = new Parse.Query(Activity);
