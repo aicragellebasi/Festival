@@ -18,14 +18,25 @@
 				<h2>Our Instructors, Speakers and Filmmakers</h2>
                 <figure><img src="/img/mainImg-01.png" id="perroAndalous" alt="Un Perro Andalus"></figure>
 	</header>
-	<section id="main">
-
+	<section id="staff">
 		<% for (var i=0; i<staffs.length; i++){ %>
 		<% var staff = staffs[i] %>
-		<h4><%= staff.get('fname') %> <%= staff.get('lname') %></h4>
-		<p><%= staff.get('bio') %></p>
-		<a href="/staff/<%= staff.id %>" class="button">View Full Bio</a>
+		<article id="bioExcerpt">
+			<h3>
+				<a href="/staff/<%= staff.id %>">
+					<%= staff.get('fname') %> <%= staff.get('lname') %>
+				</a>
+			</h3>
+			<figure class="flor">
+				<a href="/staff/<%= staff.id %>"><img src="/img/participants/<%= staff.get("img") %>" alt="Movies"></a>
+			</figure>
+			<div class="excerpt">
+				<p><%= staff.get('bio') %></p>
+				<a href="/staff/<%= staff.id %>"><button>View Full Bio</button></a>
+			</div>
+		</article>
 		<% } %>
+
 	</section>
 	<footer><% include footer %></footer>
 </div>
