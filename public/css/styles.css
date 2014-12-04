@@ -133,7 +133,7 @@ nav#topNavDesktops{
 
 
 /* ************** Header */
-header{
+.container > header{
 	width: 100%;
 	float: left;
 	padding-left: 0.5rem;
