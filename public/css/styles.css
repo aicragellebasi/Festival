@@ -69,6 +69,7 @@ img{
 #fixedTopNav{
 	position: relative;
 }
+
 /* ************** navbar mobile dropdown button */
 nav#topNavMobiles{
 	display: inline-block;
@@ -371,13 +372,18 @@ footer nav ul{
 	/* ************** Sections main content */
 
 
-	#featuredEvents article{
+	#featuredEvents article, #staff article{
 		float: left;
-		width: 30%;
+		width: 32%;
+	}
+	#featuredEvents article p, #staff article p{
+		padding: 0 15px;
 	}
 	#featuredEvents article p{
 		min-height: 185px;
-		padding: 0 15px;
+	}
+	#staff img{
+		
 	}
 
 
