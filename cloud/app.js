@@ -303,7 +303,16 @@ app.post('/ajax/processStep2', function(req, res) {
 					  	act2update.set("ParticipantsID",participant2add);
 					  	act2update.save(null,{
 					  		success: function(activityUpdated){
-					  			res.json({success:true, status:'step3', activityTitle: activityUpdated.get('title'), activityDate: activityUpdated.get('date'), participant: participant});
+					  			// Formating the date to print it in a friendly way on step 3
+					  			var date = new Date (activityUpdated.get('date')); 
+					  			var niceDate = date.getMonth()+'/'+date.getDate()+'/'+date.getFullYear()+' at '+date.getHours()+'PM';
+					  			res.json({
+					  				success:true, 
+					  				status:'step3', 
+					  				activityTitle: activityUpdated.get('title'), 
+					  				activityDate: niceDate, 
+					  				participant: participant
+					  			});
 					    		console.log('participant and activity updated');
 					    		console.log('activity updated ID: '+activityUpdated.id );
 					  		},
