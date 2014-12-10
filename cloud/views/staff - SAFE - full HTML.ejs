@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<% include metas %>
+<title>Primavera de los Realizadores</title> 
+</head>
+
+<body id="reserve">
+
+<% include nav %>
+
+<div class="container">
+	<header>
+            <a href="/">
+                <img src="/img/logo.png" id="logo">
+            </a>
+                <h1><a href="/">Primavera de los Realizadores</a></h1>
+				<h2>Our Instructors, Speakers and Filmmakers</h2>
+                <figure><img src="/img/mainImg-01.png" id="perroAndalous" alt="Un Perro Andalus"></figure>
+	</header>
+	<section id="staff">
+		<% for (var i=0; i<staffs.length; i++){ %>
+		<% var staff = staffs[i] %>
+		<article id="bioExcerpt">
+			<h3>
+				<a href="/staff/<%= staff.id %>">
+					<%= staff.get('fname') %> <%= staff.get('lname') %>
+				</a>
+			</h3>
+			<figure class="flor">
+				<a href="/staff/<%= staff.id %>"><img src="/img/participants/<%= staff.get("img") %>" alt="Movies"></a>
+			</figure>
+			<div class="excerpt">
+				<p><%= staff.get('bio') %></p>
+				<a href="/staff/<%= staff.id %>"><button>View Full Bio</button></a>
+			</div>
+		</article>
+		<% } %>
+
+	</section>
+	<footer><% include footer %></footer>
+</div>
+
+<!-- Javascripts  THAT IS INCLUDED IN THE HEADER NOW
+ <script src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>	
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script src="js/menu.js"></script>
+
+ NOT THIS THOUGH -->
+ <!--script src="js/parse-functions.js"></script-->
+ <!--script src="js/parse.js"></script-->
+ <script type="text/javascript">
+ $(document).ready(function(){
+
+});
+
+ </script>
+	
+</body>
+</html>

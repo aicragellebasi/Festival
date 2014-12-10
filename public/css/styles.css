@@ -170,11 +170,16 @@ section{
 	padding: 1em;
 	overflow: auto;
 }
+section#participate{
+	border-bottom: 3px dotted #ff2e00;
+}
 
-#featuredEvents article{
+#featuredEvents article,
+#participate article{
 	text-align: center;
 }
-#featuredEvents article .flor{
+#featuredEvents article .flor,
+#participate article .flor{
 	width: 150px;
 	margin: 0 auto;
 	/*height: 150px;
@@ -213,15 +218,21 @@ button, a.button{background-color: #2887e6;}
 
 /*Buttons by categories*/
 #movies .circle, 
-#movies button, .moviesRow a.button{
+#movies button,
+#participate #movies button,
+.moviesRow a.button{
 	background-color: #2887e6;
 }
 #workshops .circle, 
-#workshops button, .workshopsRow a.button{
+#workshops button,
+#participate #workshops button,
+.workshopsRow a.button{
 	background-color: #ff2e00;
 }
 #debates .circle, 
-#debates button, .debatesRow a.button{
+#debates button,
+#participate #debates button,
+.debatesRow a.button{
 	background-color: #1ba51c;
 }
 #participate .circle, 
@@ -372,11 +383,15 @@ footer nav ul{
 	/* ************** Sections main content */
 
 
-	#featuredEvents article, #staff article{
+	#featuredEvents article, 
+	#staff article,
+	#participate article{
 		float: left;
 		width: 32%;
 	}
-	#featuredEvents article p, #staff article p{
+	#featuredEvents article p, 
+	#staff article p,
+	#participate article p{
 		padding: 0 15px;
 	}
 	#featuredEvents article p{

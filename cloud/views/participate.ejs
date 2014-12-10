@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<% include metas %>
+<title>Primavera de los Realizadores</title> 
+</head>
+
+<body id="participatePage">
+
+<% include nav %>
+
+<div class="container">
+	<header>
+            <a href="/">
+                <img src="/img/logo.png" id="logo">
+            </a>
+                <h1><a href="/">Primavera de los Realizadores</a></h1>
+                <h2><%= message %></h2>
+                <figure><img src="/img/mainImg-01.png" id="perroAndalous" alt="Un Perro Andalus"></figure>
+	</header>
+	<section id="participate">
+		<article id="movies">
+			<h3>Filmmakers</h3>
+			<figure class="flor">
+				<a href="/contact %>"><img src="img/filmmaker.jpg" alt="Filmmaker"></a>
+			</figure>
+			<p>You do not have to be a Spanish filmmaker but your work has to be related to Spanish cine.</p>
+			<a href="/contact"><button>Yes! I am a filmmaker!</button></a>
+		</article>
+		<article id="workshops">
+			<h3>Instructors</h3>
+			<figure class="flor">
+				<a href="/contact %>"><img src="img/instructor.jpg" alt="Instructor"></a>
+			</figure>
+			<p>Teach Spanish cine, its history and theories to small group of people.</p>
+			<a href="/contact"><button>I love to teach!</button></a>
+		</article>
+		<article id="debates">
+			<h3>Speakers</h3>
+			<figure class="flor">
+				<a href="/contact %>"><img src="img/speaker.jpg" alt="Speaker"></a>
+			</figure>
+			<p>If you feel like you know a lot about Spanish cine, then maybe you can lead one of our debates.</p>
+			<a href="/contact"><button>I am a great speaker!</button></a>
+		</article>
+	</section>
+	<section id="staff">
+		<% include staff %>
+	</section>
+	<footer><% include footer %></footer>
+</div>
+
+<!-- Javascripts  THAT IS INCLUDED IN THE HEADER NOW
+ <script src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>	
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script src="js/menu.js"></script>
+
+ NOT THIS THOUGH -->
+ <!--script src="js/parse-functions.js"></script-->
+ <!--script src="js/parse.js"></script-->
+ <script type="text/javascript">
+ $(document).ready(function(){
+
+});
+
+ </script>
+	
+</body>
+</html>
