@@ -7,6 +7,32 @@
 					<%= staff.get('fname') %> <%= staff.get('lname') %>
 				</a>
 			</h3>
+			<h4>
+				<% var rolesNum = staff.get('role') %>
+				
+				<% for (var j=0; j<rolesNum.length; j++) { %>
+					<% var role = rolesNum[j] %>
+					<% if (role == 1) { %>
+						Instructor
+						<% if (rolesNum.length>1) { %>
+						, 
+						<% } %>
+					<% } %>
+					<% if (role == 2) { %>
+						Speaker
+						<% if (rolesNum.length>1) { %>
+						, 
+						<% } %>
+					<% } %>
+					<% if (role == 3) { %>
+						Filmmaker
+						<% if (rolesNum.length>1) { %>
+						, 
+						<% } %>
+					<% } %>
+				<% } %>
+				
+			</h4>
 			<figure class="flor">
 				<a href="/staff/<%= staff.id %>"><img src="/img/participants/<%= staff.get("img") %>" alt="Movies"></a>
 			</figure>

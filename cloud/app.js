@@ -361,8 +361,9 @@ app.get('/staff', function(req, res) {
 	var query = new Parse.Query(Parse.User);
 	query.find({
 	  success: function(results) {
-
 		console.log("Successfully retrieved " + results.length + " staff members.");
+
+		//var role = 
 		res.render('staff', { 
 		  	message: '',
 		  	staffs: results,
